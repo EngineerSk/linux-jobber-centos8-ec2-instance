@@ -1,4 +1,0 @@
-include LICENSE
-include README
-recursive-include eskayoriadescrumy/static *
-recursive-include eskayoriadescrumy/templates *
