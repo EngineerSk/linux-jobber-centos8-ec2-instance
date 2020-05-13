@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+django_eskayoriadescrumy.egg-info/PKG-INFO
+django_eskayoriadescrumy.egg-info/SOURCES.txt
+django_eskayoriadescrumy.egg-info/dependency_links.txt
+django_eskayoriadescrumy.egg-info/top_level.txt
+eskayoriadescrumy/__init__.py
+eskayoriadescrumy/admin.py
+eskayoriadescrumy/apps.py
+eskayoriadescrumy/models.py
+eskayoriadescrumy/tests.py
+eskayoriadescrumy/urls.py
+eskayoriadescrumy/views.py
+eskayoriadescrumy/migrations/__init__.py
