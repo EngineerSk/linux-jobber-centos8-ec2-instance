@@ -14,7 +14,7 @@ setup(
     include_package_data=True,
     license="BSD License",
     description="A simple django app",
-    lang_description=README,
+    long_description=README,
     url="https://www.example.com",
     author="DUROSINMI SIKIRU ORIADE",
     author_email="eskayoriade@gmail.com",
