@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['18.191.220.71', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'eskayoriadescrumy.apps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
