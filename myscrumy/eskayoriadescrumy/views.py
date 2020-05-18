@@ -4,7 +4,8 @@ from .models import ScrumyGoals
 
 # Create your views here.
 def index(request):
-    return HttpResponse("This is a Scrum Application")
+    goal = ScrumyGoals.objects.filter(goal_name__contains='Lear')
+    return HttpResponse(goal)
 
 def move_goal(request, goal_id):
     myId = goal_id
