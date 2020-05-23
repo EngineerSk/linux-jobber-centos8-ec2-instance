@@ -1,37 +1,60 @@
-<style>
-    table, td, tr{
-      border:1px solid red;
-      border-collapse:collapse;
-    }
-</style>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table, thead, tbody{
+        border:1px solid red;
+      }
+    </style>
+  </head>
+  <body>
 
-<table> 
-   <thead>
+   <table> 
+     <thead>
       <tr>
-        <td>
+        <th>
           User
-        </td>
-        <td>
+        </th>
+        <th>
           Weekly Goals
-        </td>
-        <td>
+        </th>
+        <th>
           Daily Goals
-        </td>
-        <td>
+        </th>
+        <th>
           Verify Goals
-        </td>
-        <td>
+        </th>
+        <th>
           Done Goals
-        </td>
+        </th>
       </tr>
-   </thead>
-   <tbody>
+    </thead>
+    <tbody>
       <tr>
-        <td> {{ user.first_name }}</td> 
+        <td>{{ user.first_name }}</td>
+        {% if 'Weekly' in goal_status.status_name %} 
+        <td>{{ goal_name }} {{ goal_id }} </td>
+        {% else %}
+        <td>----</td>
+        {% endif %}
+        {% if 'Daily' in goal_status.status_name %}
         <td> {{ goal_name }} {{ goal_id }} </td>
-        <td></td>
-        <td></td>
-        <td></td>
+       	{% else %}
+       	<td>----</td>
+       	{% endif %}
+        {% if 'Verify' in goal_status.status_name %}
+        <td> {{ goal_name }} {{ goal_id }} </td>
+       	{% else %}
+       	<td>----</td>
+       	{% endif %}
+        {% if 'Done' in goal_status.status_name %}
+        <td> {{ goal_name }} {{ goal_id }} </td>
+       	{% else %}
+       	<td>----</td>
+       	{% endif %}
+
       </tr>
-   </tbody>
-</table>
+    </tbody>
+   </table>
+  </body>
+</html>

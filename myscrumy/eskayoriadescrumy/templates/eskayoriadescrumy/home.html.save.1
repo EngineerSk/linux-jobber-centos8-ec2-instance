@@ -1,0 +1,38 @@
+<style>
+    table, td, tr{
+      border:1px solid red;
+      border-collapse:collapse;
+    }
+</style>
+
+<table> 
+   <thead>
+      <tr>
+        <td>
+          User
+        </td>
+        <td>
+          Weekly Goals
+        </td>
+        <td>
+          Daily Goals
+        </td>
+        <td>
+          Verify Goals
+        </td>
+        <td>
+          Done Goals
+        </td>
+      </tr>
+   </thead>
+   <tbody>
+      {% if 'Weekly' in %}
+      <tr>
+        <td> {{ user.first_name }}</td> 
+        <td> {{ goal_name }} {{ goal_id }} </td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+   </tbody>
+</table>
