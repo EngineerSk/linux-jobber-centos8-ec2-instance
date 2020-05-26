@@ -41,18 +41,24 @@ def home(request):
     daily_goals = None
     verify_goals = None
     done_goals = None
-    scrumy_goals = None
 
     try:
-       status = GoalStatus.objects.get(status_name = "Weekly Goal")
-       weekly_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Daily Goal")
-       daily_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Verify Goal")
-       verify_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Done Goal")
-       done_goals = status.scrumygoals_set.all()
-       scrumy_goals = ScrumyGoals.objects.all()
+       weekly_goals = ScrumyGoals.objects.filter(
+              goal_status = GoalStatus.objects.get(
+              status_name__contains='Weekly'))
+       
+       daily_goals = ScrumyGoals.objects.filter(
+              goal_status = GoalStatus.objects.get(
+              status_name__contains='Daily'))
+
+       verify_goals = ScrumyGoals.objects.filter(
+              goal_status = GoalStatus.objects.get(
+              status_name__contains='Verify'))
+
+       done_goals = ScrumyGoals.objects.filter(
+              goal_status = GoalStatus.objects.get(
+              status_name__contains='Done'))
+ 
 
     except ScrumyGoals.DoesNotExist:
        return HttpResponse()
@@ -63,7 +69,7 @@ def home(request):
       'daily_goals' : daily_goals,
       'verify_goals' : verify_goals,
       'done_goals' : done_goals,
-      'scrumy_goals' : scrumy_goals
+      'goal_status':goal.goal_status
     }
 
     return render(request, 'eskayoriadescrumy/home.html', context)

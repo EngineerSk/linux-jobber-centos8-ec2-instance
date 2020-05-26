@@ -37,33 +37,21 @@ def add_goal(request):
     
 
 def home(request):
-    weekly_goals = None
-    daily_goals = None
-    verify_goals = None
-    done_goals = None
-    scrumy_goals = None
+    goals = None
 
     try:
-       status = GoalStatus.objects.get(status_name = "Weekly Goal")
-       weekly_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Daily Goal")
-       daily_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Verify Goal")
-       verify_goals = status.scrumygoals_set.all()
-       status = GoalStatus.objects.get(status_name = "Done Goal")
-       done_goals = status.scrumygoals_set.all()
-       scrumy_goals = ScrumyGoals.objects.all()
+       goal = ScrumyGoals.objects.get(goal_name="Learn Django")
+       goal_name = goal.goal_name
+       goal_id = goal.goal_id
+       user = goal.user
 
     except ScrumyGoals.DoesNotExist:
        return HttpResponse()
 
     context = {
-      'users' : User.objects.all(),
-      'weekly_goals' : weekly_goals,
-      'daily_goals' : daily_goals,
-      'verify_goals' : verify_goals,
-      'done_goals' : done_goals,
-      'scrumy_goals' : scrumy_goals
+      'goal_name':goal_name,
+      'goal_id':goal_id,
+      'user'
     }
 
     return render(request, 'eskayoriadescrumy/home.html', context)
