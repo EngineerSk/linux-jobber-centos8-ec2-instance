@@ -2,20 +2,20 @@
 <html>
   <head>
     <style>
-     table {
-       border-collapse : collapse;
+     table, thead, tbody{
+       border:1px solid red;
+       border-collapse:collapse;
      }
-
-     table, th, td {
-       border : 1px solid red;
-     } 
+     th, td{
+       padding: 3px;
+     }
     </style>
   </head>
   <body>
 
-   <table border="1"> 
+   <table> 
      <thead>
-       <tr>
+      <tr>
         <th>
           User
         </th>
@@ -31,70 +31,39 @@
         <th>
           Done Goals
         </th>
-       </tr>
+      </tr>
     </thead>
     <tbody>
       {% if scrumy_goals is not None %}
       {% if users is not None %}
       {% for user in users %}
-      {% if user.rname.all is None and user.scrumygoals_set.all is not None %}
-      {% for goal in user.scrumygoals_set.all %}
-      
-      <tr>
-        <td> {{ user.username }} </td>
-        <td>
-        {% if goal in weekly_goals %}
-        {{ goal.goal_name }} {{ goal.goal_id }}
-        {% endif %}
-        </td>
-        <td>
-        {% if goal in daily_goals %}
-       	{{ goal.goal_name }} {{ goal.goal_id }}
-	{% endif %}
-        </td>
-        <td>
-        {% if goal in verify_goals %}
-       	{{ goal.goal_name }} {{ goal.goal_id }}
-	{% endif %}
-        </td>
-        <td>
-        {% if goal in done_goals %}
-       	{{ goal.goal_name }} {{ goal.goal_id }}
-	{% endif %}
-        </td>
-      </tr>
-  
-      {% endfor %}
-      {% endif %}
-      {% if user.rname.all is not None %}
+      {% if user.rname.all is not none %}
       {% for goal in user.rname.all %}
       <tr>
-	<td> {{ user.username }} </td>
-        <td>
-	{% if goal in weekly_goals %}
-        {{ goal.goal_name }} {{ goal.goal_id }}
+        <td> {{ user.username }} </td>
+        {% if goal in weekly_goals %}
+        <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+        {% else %}
+        <td></td>
         {% endif %}
-        </td>
-	<td>
         {% if goal in daily_goals %}
-        {{ goal.goal_name }} {{ goal.goal_id }}
-        {% endif %}
-        </td>
-	<td>
-	{% if goal in verify_goals %}
-        {{ goal.goal_name }} {{ goal.goal_id }}
-        {% endif %}
-        </td>
-       	<td>
+       	<td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+        {% else %}
+       	<td></td>
+	{% endif %}
+        {% if goal in verify_goals %}
+       	<td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+        {% else %}
+       	<td></td>
+	{% endif %}
         {% if goal in done_goals %}
-        {{ goal.goal_name }} {{ goal.goal_id }}
-        {% endif %}
-        </td>
+       	<td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+        {% else %}
+       	<td></td>
+	{% endif %}
       </tr>
-
       {% endfor %}
       {% endif %}
-      
       {% endfor %}
       {% endif %}
       {% endif %}
