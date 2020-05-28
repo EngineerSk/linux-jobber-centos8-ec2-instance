@@ -2,15 +2,19 @@
 <html>
    <head>
       <style>
-        table, thead, tbody{
-          border-collapse:collapse;
+        table{
           width:100%;
-	 text-align:center;
+        }
+        table, td, th{
+          border:1px solid red;
+          border-collapse:collapse;
+        }td, th{
+           text-align:center;
         }
       </style>
    </head>
    <body>
-      <table border='1'>
+      <table>
        <thead>
          <tr>
            <th>User</th>
@@ -21,6 +25,8 @@
          </tr>
        </thead>
        <tbody>
+      {% if scrumy_goals is not None%} 
+      {% if users is not None %} 
       {% for user in users %}
       {% if user.rname.all is not None %}
       {% for goal in user.rname.all %}
@@ -54,6 +60,8 @@
       {% endfor %}
       {% endif %}
       {% endfor %}
+      {% endif %}
+      {% endif %}
         </tbody>
       </table>
    </body>
