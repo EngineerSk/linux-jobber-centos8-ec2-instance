@@ -14,4 +14,9 @@ eskayoriadescrumy/models.py
 eskayoriadescrumy/tests.py
 eskayoriadescrumy/urls.py
 eskayoriadescrumy/views.py
+eskayoriadescrumy/migrations/0001_initial.py
+eskayoriadescrumy/migrations/0002_auto_20200524_2338.py
+eskayoriadescrumy/migrations/0003_auto_20200525_0011.py
+eskayoriadescrumy/migrations/0004_auto_20200527_1241.py
+eskayoriadescrumy/migrations/0005_auto_20200527_1244.py
 eskayoriadescrumy/migrations/__init__.py

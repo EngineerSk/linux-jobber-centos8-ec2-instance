@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+        table{
+          width:100%;
+        }
+        table, td, th{
+          border:1px solid red;
+          border-collapse:collapse;
+        }td, th{
+           text-align:center;
+        }
+      </style>
+   </head>
+   <body>
+      <table>
+       <thead>
+         <tr>
+           <th>User</th>
+           <th>Weekly Goals</th>
+           <th>Daily Goals</th>
+           <th>Verify Goals</th>
+           <th>Done Goals</th>
+         </tr>
+       </thead>
+       <tbody>
+      {% if scrumy_goals is not None%} 
+      {% if users is not None %} 
+      {% for user in users %}
+      {% if user.rname.all is not None %}
+      {% for goal in user.rname.all %}
+         <tr>
+           <td>{{ user.username }}</td>
+
+           {% if goal in weekly_goals %}
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           {% else %}
+           <td></td>
+           {% endif %}
+
+           {% if goal in daily_goals %}
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           {% else %}
+           <td></td>
+           {% endif %}
+
+           {% if goal in verify_goals %}
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           {% else %}
+           <td></td>
+           {% endif %}
+
+           {% if goal in done_goals %}
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           {% else %}
+           <td></td>
+           {% endif %}
+         </tr>
+      {% endfor %}
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endif %}
+        </tbody>
+      </table>
+   </body>
+</html>
