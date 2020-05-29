@@ -3,13 +3,18 @@ from django.shortcuts import render
 from random import randint
 from .models import GoalStatus, ScrumyGoals, User
 from .forms import SignupForm, CreateGoalForm
+from django.contrib.auth.models import Group
 
 # Create your views here.
 def index(request):
     form = SignupForm()
     if request.method == 'POST':
       form = SignupForm(request.POST)
-      form.save()
+      my_group = Group.objects.get(name = 'Developer')
+      
+      if form.is_valid:
+        my_group.user_set.add(form.save())
+        return HttpResponse('Your account has been created successfully')
     else:
       form = SignupForm()
 
