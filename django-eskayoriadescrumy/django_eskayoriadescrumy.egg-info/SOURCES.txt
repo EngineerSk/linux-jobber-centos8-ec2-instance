@@ -10,6 +10,7 @@ django_eskayoriadescrumy.egg-info/top_level.txt
 eskayoriadescrumy/__init__.py
 eskayoriadescrumy/admin.py
 eskayoriadescrumy/apps.py
+eskayoriadescrumy/forms.py
 eskayoriadescrumy/models.py
 eskayoriadescrumy/tests.py
 eskayoriadescrumy/urls.py

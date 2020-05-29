@@ -2,11 +2,18 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from random import randint
 from .models import GoalStatus, ScrumyGoals, User
+from .forms import SignupForm, CreateGoalForm
 
 # Create your views here.
 def index(request):
-    goal = ScrumyGoals.objects.filter(goal_name__contains='Lear')
-    return HttpResponse(goal)
+    form = SignupForm()
+    if request.method == 'POST':
+      form = SignupForm(request.POST)
+      form.save()
+    else:
+      form = SignupForm()
+
+    return render(request, 'eskayoriadescrumy/index.html', {'form':form})
 
 
 def move_goal(request, goal_id):
@@ -20,20 +27,13 @@ def move_goal(request, goal_id):
 
 
 def add_goal(request):
-    myGoalId = randint(1000, 9999)
-
-    try:
-       while ScrumyGoals.objects.get(goal_id = myGoalId) is not None:
-          myGoalId = randint(1000, 9999)  
-    except ScrumyGoals.DoesNotExist:
-       goal = ScrumyGoals.objects.create(goal_id = myGoalId, 
-       goal_name = 'Keep Learning Django', created_by = 'Louis', 
-       moved_by = 'Louis', owner = 'Louis', 
-       goal_status = GoalStatus.objects.get(status_name = 'Weekly Goal'), 
-       user = User.objects.get(username = 'Louis Oma'))
-       goal.save()
-     
-    return HttpResponse()    
+    scrumy_goal_form = CreateGoalForm()
+    if request.method == 'POST':
+      scrumy_goal_form = CreateGoalForm(request.POST)
+      scrumy_goal_form.save()
+    else:
+      scrumy_goal_form = CreateGoalForm()
+    return render(request, 'eskayoriadescrumy/addgoal.html', {'form':scrumy_goal_form})
     
 
 def home(request):
