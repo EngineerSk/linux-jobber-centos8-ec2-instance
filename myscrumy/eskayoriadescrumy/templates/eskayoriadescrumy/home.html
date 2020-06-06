@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <title>Home</title>
       <style>
         table{
           width:100%;
@@ -8,13 +9,17 @@
         table, td, th{
           border:1px solid red;
           border-collapse:collapse;
-        }td, th{
+        }td, th, h2, h3{
            text-align:center;
+        }
+        h2{
+          color: blue;
         }
       </style>
    </head>
    <body>
-    <a href="{% url 'eskayoriadescrumy:addgoal' %}"> add goal</a>
+    <h2>Current Logged-in User: {{ current_user }} ({{ group }})</h2>
+    <h3><a href="{% url 'eskayoriadescrumy:addgoal' %}"> add goal</a></h3>
       <table>
        <thead>
          <tr>
@@ -35,25 +40,29 @@
            <td>{{ user.username }}</td>
 
            {% if goal in weekly_goals %}
-           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}
+            <a href="{% url 'eskayoriadescrumy:movegoal' goal.goal_id %}"> move goal</a></td>
            {% else %}
            <td></td>
            {% endif %}
 
            {% if goal in daily_goals %}
-           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}
+            <a href="{% url 'eskayoriadescrumy:movegoal' goal.goal_id %}"> move goal</a></td>
            {% else %}
            <td></td>
            {% endif %}
 
            {% if goal in verify_goals %}
-           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}
+            <a href="{% url 'eskayoriadescrumy:movegoal' goal.goal_id %}"> move goal</a></td>
            {% else %}
            <td></td>
            {% endif %}
 
            {% if goal in done_goals %}
-           <td>{{ goal.goal_name }} {{ goal.goal_id }}</td>
+           <td>{{ goal.goal_name }} {{ goal.goal_id }}
+            <a href="{% url 'eskayoriadescrumy:movegoal' goal.goal_id %}"> move goal</a></td>
            {% else %}
            <td></td>
            {% endif %}

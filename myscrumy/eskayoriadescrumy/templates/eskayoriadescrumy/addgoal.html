@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Add Goal</title>
+		<style type="text/css">
+			h2{
+				color:blue;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
+		<h2>Current Logged-in User: {{ current_user }} ({{ group }})</h2>
 		<form method='post' action=''>
 			{% csrf_token %}
 			{{ form.as_p }}

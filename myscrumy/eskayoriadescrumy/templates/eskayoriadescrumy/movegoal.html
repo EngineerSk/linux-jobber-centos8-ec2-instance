@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Sign up</title>
+		<title>Move Goal</title>
 		<style type="text/css">
 			h2{
+				color:blue;
 				text-align: center;
-				color: blue;
 			}
 		</style>
 	</head>
 	<body>
 		<h2>Current Logged-in User: {{ current_user }} ({{ group }})</h2>
-		<form method='POST' action=''>
-		{% csrf_token %}
-		    {{ form.as_p }}
-		    <input type="submit" name="save">
+		<form method='post' action=''>
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="move goal">
 		</form>
+
 	</body>
 </html>
