@@ -54,7 +54,6 @@ def move_goal(request, goal_id):
 
         if move_goal_form.is_valid():
           current_user = request.user
-          print(current_user)
           if move_goal_form.cleaned_data["goal_status"] is not None:
             if current_user in users_in_developer and goal.user == current_user:
               if move_goal_form.cleaned_data["goal_status"] != done_goal:
@@ -67,7 +66,7 @@ def move_goal(request, goal_id):
                   goal.goal_status = move_goal_form.cleaned_data["goal_status"]
                   goal.save()
 
-              elif goal.user in users_in_quality_assurance is None: 
+              elif goal.user != current_user: 
                 if goal.goal_status == verify_goal:
                   if move_goal_form.cleaned_data["goal_status"] is done_goal:
                     goal.goal_status = move_goal_form.cleaned_data.get["goal_status"]
@@ -83,7 +82,7 @@ def move_goal(request, goal_id):
                 goal.save()
 
           else:
-            return HttpResponse("{current_user.username} cannot move {goal.goal.name} to {goal.goal_status}" )
+            return HttpResponse("{current_user.username} cannot move {goal.goal_name} to {goal.goal_status}" )
 
       else:
         move_goal_form = MoveGoalForm()
